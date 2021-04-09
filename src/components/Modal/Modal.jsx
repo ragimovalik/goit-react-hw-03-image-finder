@@ -1,3 +1,17 @@
+import styles from './Modal.module.css';
+
+const Modal = () => {
+  return (
+    <div className="Overlay">
+      <div className="Modal">
+        <img src="" alt="" />
+      </div>
+    </div>
+  );
+};
+
+export default Modal;
+
 /*
 При клике по элементу галереи должно открываться модальное окно с 
 темным оверлеем и отображаться большая версия изображения. 
@@ -8,9 +22,5 @@
 только вместо белого модального окна рендерится изображение 
 (в примере нажми Run). Анимацию делать не нужно!
 
-<div className="Overlay">
-  <div className="Modal">
-    <img src="" alt="" />
-  </div>
-</div>
+
 */
