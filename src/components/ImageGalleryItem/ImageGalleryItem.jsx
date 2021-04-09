@@ -1,15 +1,16 @@
-const ImageGalleryItem = () => {
+import styles from './ImageGalleryItem.module.css';
+
+const ImageGalleryItem = ({ id, lilPicUrl, bigPicUrl, tags }) => {
   return (
     <>
-      <img src="https://picsum.photos/200" alt="from moc website " />
+      <img
+        className={styles['ImageGalleryItem__image']}
+        src={lilPicUrl}
+        alt={tags}
+        data={bigPicUrl}
+      />
     </>
   );
 };
 
 export default ImageGalleryItem;
-
-/*
-<li className="ImageGalleryItem">
-  <img src="" alt="" className="ImageGalleryItem-image" />
-</li>
-*/
