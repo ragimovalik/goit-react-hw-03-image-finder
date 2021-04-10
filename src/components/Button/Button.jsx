@@ -1,10 +1,22 @@
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styles from './Button.module.css';
 
-console.log(styles);
+const Button = ({ btnText, onClick }) => {
+  return (
+    <button className={styles.Button} onClick={onClick}>
+      {btnText}
+    </button>
+  );
+};
 
-const Button = () => {
-  return <button className={styles.Button}>click me</button>;
+Button.defaultProps = {
+  btnText: 'click me',
+  onClick: () => null,
+};
+
+Button.propTypes = {
+  btnText: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default Button;
@@ -26,21 +38,5 @@ window.scrollTo({
 когда есть какие-то загруженные изобаржения. 
 Если массив изображений пуст, кнопка не 
 рендерится.
-
-*/
-
-/*
-
-const Button = ({ btnText, onLeaveFeedback }) => (
-  <button
-    onClick={onLeaveFeedback}
-  >
-    {btnText}
-  </button>
-);
-
-Button.propTypes = {
-  btnText: PropTypes.string.isRequired,
-};
 
 */

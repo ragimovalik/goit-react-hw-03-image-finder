@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
+import fetchOn from './service/ApiService';
 import Searchbar from './components/Searchbar';
 import ImageGallery from './components/ImageGallery';
-// import Button from './components/Button';
+import Button from './components/Button';
 // import Modal from './components/Modal';
-import './App.css';
 
 const useStyles = createUseStyles({
   App: {
@@ -15,44 +15,60 @@ const useStyles = createUseStyles({
   },
 });
 
+// const initialCollection = { id: '', lilPicUrl: '', bigPicUrl: '', tags: '' };
+
 const App = () => {
-  const [collection, setCollection] = useState([
-    { id: '', lilPicUrl: '', bigPicUrl: '', tags: '' },
-  ]);
+  const [collection, setCollection] = useState([]);
+  const [query, setQuery] = useState('');
+  let [pageNumber, setPageNumber] = useState(1);
+  // const [error, setError] = useState('Error')
 
   const classes = useStyles();
 
-  const API_KEY = '20179181-b536d7b2e359c0533f6f56cb7';
-  const baseUrl = 'https://pixabay.com/api/';
-  const pageNumber = 1;
-  const pageCapacity = 12;
+  const inputSubmitHandler = inputedText => {
+    setPageNumber(1);
+    setQuery(inputedText);
+    setCollection([]);
+  };
 
-  const inputSubmitHandler = query => {
-    const url = `${baseUrl}/?q=${query}&page=${pageNumber}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=${pageCapacity} `;
+  useEffect(() => {
+    if (!query) return;
 
-    fetch(url)
-      .then((response, reject) => response.json())
-      .then(({ hits }) => {
-        console.log(hits);
-        setCollection(
-          hits.map(el => ({
-            id: el.id,
-            lilPicUrl: el.webformatURL,
-            bigPicUrl: el.largeImageURL,
-            tags: el.tags,
+    fetchOn(query, pageNumber)
+      .then(pictures => {
+        console.log(pictures);
+        setCollection(prevCollection => [
+          ...prevCollection,
+          ...pictures.map(picture => ({
+            id: picture.id,
+            lilPicUrl: picture.webformatURL,
+            bigPicUrl: picture.largeImageURL,
+            tags: picture.tags,
           })),
-        );
+        ]);
       })
       .catch(error => console.log(error));
+  }, [query, pageNumber]);
+
+  const paginationHandler = () => {
+    setPageNumber(++pageNumber);
   };
+
+  // useEffect(() => {
+  //   collection.length >= 12 && setPageNumber(pageNumber++);
+  // });
 
   return (
     <div className={classes.App}>
-      <h1>Image Finder</h1>
-
       <Searchbar onSubmit={inputSubmitHandler} />
-      <ImageGallery collection={collection} />
-      {/* <Button /> */}
+
+      {collection ? <ImageGallery collection={collection} /> : null}
+
+      {collection.length >= 12 && (
+        <Button btnText={'load more'} onClick={paginationHandler} />
+      )}
+      {/* {pageNumber >= 2 && <Button />} */}
+
       {/* <Modal /> */}
     </div>
   );

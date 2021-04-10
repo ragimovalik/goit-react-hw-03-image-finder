@@ -7,6 +7,7 @@ const ImageGalleryItem = ({ id, lilPicUrl, bigPicUrl, tags }) => {
         className={styles['ImageGalleryItem__image']}
         src={lilPicUrl}
         alt={tags}
+        title={tags}
         data={bigPicUrl}
       />
     </>
