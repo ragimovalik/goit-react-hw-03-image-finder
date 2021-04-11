@@ -11,10 +11,10 @@ const fetchOn = (query, pageNumber, pageCapacity = 12) => {
         return;
       } else return response.json();
     })
-    .then(({ hits }) => {
-      return hits;
+    .then(({ totalHits, hits }) => {
+      return { hits, totalHits };
     })
-    .catch(error => console.log('Server Error'));
+    .catch(error => console.log('Server Error. Something gone wrong.'));
 };
 
 export default fetchOn;

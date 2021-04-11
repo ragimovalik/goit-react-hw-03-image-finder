@@ -34,7 +34,3 @@
   transform: scale(1.05);
   background-color: #303f9f;
 }
-
-.Button:not(:last-child) {
-  margin-right: 15px;
-}
