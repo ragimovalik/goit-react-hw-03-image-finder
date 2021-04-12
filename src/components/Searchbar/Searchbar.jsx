@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './Searchbar.module.css';
 
 class Searchbar extends Component {
   state = { inputedText: '' };
 
-  inputHandler = e => {
-    this.setState({ inputedText: e.target.value });
+  inputHandler = event => {
+    this.setState({ inputedText: event.target.value });
   };
 
-  formSubmitHandler = e => {
-    e.preventDefault();
+  formSubmitHandler = event => {
+    event.preventDefault();
 
     this.props.onSubmit(this.state.inputedText);
     this.setState({ inputedText: '' });
@@ -37,5 +38,9 @@ class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func,
+};
 
 export default Searchbar;

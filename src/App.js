@@ -52,11 +52,11 @@ const App = () => {
 
         setCollection(prevCollection => [
           ...prevCollection,
-          ...hits.map(picture => ({
-            id: picture.id,
-            lilPicUrl: picture.webformatURL,
-            bigPicUrl: picture.largeImageURL,
-            tags: picture.tags,
+          ...hits.map(({ id, webformatURL, largeImageURL, tags }) => ({
+            id,
+            lilPicUrl: webformatURL,
+            bigPicUrl: largeImageURL,
+            tags,
           })),
         ]);
       })
@@ -86,9 +86,13 @@ const App = () => {
 
   const clickOnImageHandler = url => setUrlForModal(url);
 
-  const modalCloseHandler = event =>
-    (event.target.id === 'backdrop' || event.target.nodeName === 'BUTTON') &&
-    setUrlForModal('');
+  const modalCloseHandler = ({ target, code }) => {
+    (target.id === 'backdrop' || target.nodeName === 'BUTTON') &&
+      setUrlForModal('');
+
+    if (code !== 'Escape') return;
+    code === 'Escape' && setUrlForModal('');
+  };
 
   return (
     <div className={classes.App}>
@@ -104,6 +108,7 @@ const App = () => {
       {isBtnVisible && (
         <Button btnText={'load more'} onClick={getNewPictures} />
       )}
+
       {urlForModal && <Modal url={urlForModal} onClose={modalCloseHandler} />}
     </div>
   );

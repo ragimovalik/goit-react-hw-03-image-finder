@@ -12,9 +12,6 @@ const useStyles = createUseStyles({
     textAlign: 'center',
     top: '0',
   },
-  //   Spinner: {
-  //     position: 'absolute',
-  //   },
 });
 
 const Spinner = ({ visible }) => {
@@ -23,7 +20,6 @@ const Spinner = ({ visible }) => {
   return (
     <div className={classes.Spinner__box}>
       <Loader
-        // className={classes.Spinner}
         type="ThreeDots"
         color="#303F9F"
         height={60}
