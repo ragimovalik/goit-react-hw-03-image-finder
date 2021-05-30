@@ -1,11 +1,11 @@
 ## `GoIt React HW 03 - Image Finder`
 
-````
 #### Описание компонента Searchbar
 
-* Компонент принимает один проп onSubmit - функцию для передачи значения инпута при сабмите формы. Создает DOM-элемент следующей структуры.
+- Компонент принимает один проп onSubmit - функцию для передачи значения инпута
+  при сабмите формы. Создает DOM-элемент следующей структуры.
 
-```<header className="Searchbar">
+````<header className="Searchbar">
   <form className="SearchForm">
     <button type="submit" className="SearchForm-button">
       <span className="SearchForm-button-label">Search</span>
