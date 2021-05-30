@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+## `GoIt React HW 03 - Image Finder`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+````
+#### Описание компонента Searchbar
 
-## Available Scripts
+* Компонент принимает один проп onSubmit - функцию для передачи значения инпута при сабмите формы. Создает DOM-элемент следующей структуры.
 
-In the project directory, you can run:
+```<header className="Searchbar">
+  <form className="SearchForm">
+    <button type="submit" className="SearchForm-button">
+      <span className="SearchForm-button-label">Search</span>
+    </button>
 
-### `npm start`
+    <input
+      className="SearchForm-input"
+      type="text"
+      autocomplete="off"
+      autofocus
+      placeholder="Search images and photos"
+    />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  </form>
+</header>```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### Описание компонента ImageGallery
 
-### `npm test`
+* Список карточек изображений. Создает DOM-элемент следующей структуры.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```<ul className="ImageGallery">
+  <!-- Набор <li> с изображениями -->
+</ul>```
 
-### `npm run build`
+#### Описание компонента ImageGalleryItem
+*Компонент элемента списка с изображением. Создает DOM-элемент следующей структуры.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```<li className="ImageGalleryItem">
+  <img src="" alt="" className="ImageGalleryItem-image" />
+</li>```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Описание компонента Button
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* При нажатии на кнопку Load more должна догружаться следующая порция изображений и рендериться вместе с предыдущими. После загрузки и рендера новой партии изображений страница должна плавно скролиться. Для скрола используй следующий код.
 
-### `npm run eject`
+```window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth', }); ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* Кнопка должна рендерится только тогда, когда есть какие-то
+загруженные изобаржения. Если массив изображений пуст, кнопка не рендерится.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Описание компонента Loader
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* Компонент спинера, отображется пока идет загрузка изобаржений. Используй любой готовый компонент, например react-loader-spinner или любой другой.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Описание компонента Modal
 
-## Learn More
+* При клике по элементу галереи должно открываться модальное окно с темным оверлеем и отображаться большая версия изображения.
+Модальное окно должно закрываться по нажатию клавиши ESC или по клику на
+оверлее.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Внешний вид похож на функционал этого VanillaJS-плагина, только вместо белого модального окна рендерится изображение (в примере нажми Run).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Анимацию делать не нужно!
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```<div className="Overlay">
+  <div className="Modal">
+    <img src="" alt="" />
+  </div>
+</div>```
+````
