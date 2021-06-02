@@ -1,25 +1,31 @@
 import ImageGalleryItem from '../ImageGalleryItem';
 import PropTypes from 'prop-types';
-import styles from './ImageGallery.module.css';
+import styled from 'styled-components';
+
+const StyledGallery = styled.ul`
+  display: grid;
+  max-width: calc(100vw - 48px);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 16px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+`;
 
 const ImageGallery = ({ collection, onClick }) => {
   return (
-    <ul className={styles.ImageGallery}>
+    <StyledGallery>
       {collection.map(picture => (
-        <li
+        <ImageGalleryItem
           key={picture.id}
           onClick={() => onClick(picture.bigPicUrl)}
-          className={styles.ImageGalleryItem}
-        >
-          <ImageGalleryItem
-            id={picture.id}
-            lilPicUrl={picture.lilPicUrl}
-            bigPicUrl={picture.bigPicUrl}
-            tags={picture.tags}
-          />
-        </li>
+          id={picture.id}
+          lilPicUrl={picture.lilPicUrl}
+          bigPicUrl={picture.bigPicUrl}
+          tags={picture.tags}
+        />
       ))}
-    </ul>
+    </StyledGallery>
   );
 };
 

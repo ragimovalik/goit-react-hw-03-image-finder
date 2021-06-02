@@ -1,6 +1,56 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import styles from './Searchbar.module.css';
+import {
+  StyledSearchbar,
+  StyledButton,
+  StyledForm,
+  StyledSpan,
+  StyledInput,
+} from './SearchbarStyles';
+
+const Searchbar = ({ onSubmit }) => {
+  const [inputedText, setInputedText] = useState('');
+
+  const inputHandler = ({ target }) => {
+    setInputedText(target.value);
+  };
+
+  const formSubmitHandler = event => {
+    event.preventDefault();
+
+    onSubmit(inputedText);
+
+    setInputedText('');
+  };
+
+  return (
+    <StyledSearchbar>
+      <StyledForm onSubmit={formSubmitHandler}>
+        <StyledButton type="submit">
+          <StyledSpan>Search</StyledSpan>
+        </StyledButton>
+
+        <StyledInput
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+          value={inputedText}
+          onChange={inputHandler}
+        />
+      </StyledForm>
+    </StyledSearchbar>
+  );
+};
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func,
+};
+
+export default Searchbar;
+
+/*
+// =============== Class Component ===============
 
 class Searchbar extends Component {
   state = { inputedText: '' };
@@ -44,3 +94,4 @@ Searchbar.propTypes = {
 };
 
 export default Searchbar;
+*/

@@ -1,25 +1,40 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styles from './Modal.module.css';
+import styled from 'styled-components';
+import StyledCloseBtn from './StyledCloseBtn';
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1200;
+`;
+
+const StyledModal = styled.div`
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 24px);
+`;
 
 const Modal = ({ url, onClose }) => {
   useEffect(() => {
     window.addEventListener('keydown', onClose);
 
     return () => window.removeEventListener('keydown', onClose);
-  }, []);
+  }, []); //eslint-disable-line
 
   return (
-    <div onClick={onClose} id="backdrop" className={styles.Overlay}>
-      <div className={styles.Modal}>
+    <Overlay onClick={onClose} id="backdrop">
+      <StyledModal>
         <img src={url} alt=" " />
-      </div>
-      <button
-        onClick={onClose}
-        type="button"
-        className={styles.CloseBtn}
-      ></button>
-    </div>
+      </StyledModal>
+      <StyledCloseBtn onClick={onClose} type="button"></StyledCloseBtn>
+    </Overlay>
   );
 };
 

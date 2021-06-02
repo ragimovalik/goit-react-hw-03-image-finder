@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { createUseStyles } from 'react-jss';
+import styled from 'styled-components';
 import fetchOn from './service/ApiService';
 import Searchbar from './components/Searchbar';
 import ImageGallery from './components/ImageGallery';
@@ -8,14 +8,12 @@ import Spinner from './components/Loader';
 import TableScreen from './components/TableScreen';
 import Modal from './components/Modal';
 
-const useStyles = createUseStyles({
-  App: {
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    gridGap: 16,
-    paddingBottom: 24,
-  },
-});
+const StyledDiv = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+  padding-bottom: 24px;
+`;
 
 const App = () => {
   const [collection, setCollection] = useState([]);
@@ -26,8 +24,6 @@ const App = () => {
   const [isSpinnerVisible, setIsSpinnerVisible] = useState(false);
   const [urlForModal, setUrlForModal] = useState('');
   const [error, setError] = useState('');
-
-  const classes = useStyles();
 
   const inputSubmitHandler = inputedText => {
     setPageNumber(1);
@@ -41,7 +37,7 @@ const App = () => {
   useEffect(() => {
     if (!query) return;
     galleryHandler();
-  }, [query]);
+  }, [query]); //eslint-disable-line
 
   const galleryHandler = () => {
     fetchOn(query, pageNumber)
@@ -78,7 +74,7 @@ const App = () => {
     collection.length / pageNumber === 12
       ? setIsBtnVisible(true)
       : setIsBtnVisible(false);
-  }, [collection]);
+  }, [collection]); //eslint-disable-line
 
   const screenMessage = totalPictures
     ? `${totalPictures} images in the album`
@@ -95,8 +91,9 @@ const App = () => {
   };
 
   return (
-    <div className={classes.App}>
+    <StyledDiv>
       <Searchbar onSubmit={inputSubmitHandler} />
+
       <TableScreen message={screenMessage} />
 
       {collection ? (
@@ -110,7 +107,7 @@ const App = () => {
       )}
 
       {urlForModal && <Modal url={urlForModal} onClose={modalCloseHandler} />}
-    </div>
+    </StyledDiv>
   );
 };
 
