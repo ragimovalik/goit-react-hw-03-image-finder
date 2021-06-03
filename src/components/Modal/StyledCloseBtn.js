@@ -1,31 +1,38 @@
 import styled from 'styled-components';
+import closeBtn from './closeBtn.svg';
 
 const StyledCloseBtn = styled.button`
   position: absolute;
   top: 2%;
-  right: 4%;
+  right: 2%;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+
+  width: 44px;
+  height: 44px;
   padding: 0;
   margin: 0;
+  /* border: 3px solid #3f51b5; */
   border: none;
   border-radius: 50%;
-  background-color: transparent;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 250ms linear;
   outline: none;
-  background-image: url('./closeBtn.svg');
+
+  background-color: #e0e8e5;
+  background-image: url(${closeBtn});
   background-position: center;
   background-size: 60%;
   background-repeat: no-repeat;
 
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity 250ms linear;
+
   &:hover,
   &:focus {
-    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    transform: scale(1.03);
   }
 `;
 

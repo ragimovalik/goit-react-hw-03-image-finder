@@ -1,4 +1,6 @@
-.Scroller {
+import styled from 'styled-components';
+
+const StyledScroller = styled.button`
   position: fixed;
   bottom: 3%;
   right: 3%;
@@ -31,6 +33,12 @@
   opacity: 0.5;
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+export default StyledScroller;
+
+/*
+.Scroller {
 }
 
 @media screen and (min-width: 1024px) {
@@ -62,5 +70,4 @@
   transform: scale(1.05);
 }
 
-/* background-color: rgba(41, 41, 51, 0.25); */
-/* color: rgb(2, 117, 216); */
+*/

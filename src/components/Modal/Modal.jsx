@@ -17,6 +17,7 @@ const Overlay = styled.div`
 `;
 
 const StyledModal = styled.div`
+  position: relative;
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
 `;
@@ -32,8 +33,8 @@ const Modal = ({ url, onClose }) => {
     <Overlay onClick={onClose} id="backdrop">
       <StyledModal>
         <img src={url} alt=" " />
+        <StyledCloseBtn onClick={onClose} type="button" />
       </StyledModal>
-      <StyledCloseBtn onClick={onClose} type="button"></StyledCloseBtn>
     </Overlay>
   );
 };

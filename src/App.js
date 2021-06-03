@@ -7,6 +7,7 @@ import Button from './components/Button';
 import Spinner from './components/Loader';
 import TableScreen from './components/TableScreen';
 import Modal from './components/Modal';
+import Scroller from './components/Scroller';
 
 const StyledDiv = styled.div`
   display: grid;
@@ -24,6 +25,7 @@ const App = () => {
   const [isSpinnerVisible, setIsSpinnerVisible] = useState(false);
   const [urlForModal, setUrlForModal] = useState('');
   const [error, setError] = useState('');
+  const [isScrollerShow, setScrollerShow] = useState(false);
 
   const inputSubmitHandler = inputedText => {
     setPageNumber(1);
@@ -34,10 +36,14 @@ const App = () => {
     setUrlForModal('');
   };
 
+  // Set Query Word
+
   useEffect(() => {
     if (!query) return;
     galleryHandler();
   }, [query]); //eslint-disable-line
+
+  // Get Images by fetching and Render Gallery
 
   const galleryHandler = () => {
     fetchOn(query, pageNumber)
@@ -67,6 +73,21 @@ const App = () => {
     galleryHandler();
   };
 
+  // Scroller Handler (IsShow, Listener). Scroll to new page top
+
+  const updateScrollerShow = () =>
+    document.documentElement.scrollTop <= 140
+      ? setScrollerShow(false)
+      : setScrollerShow(true);
+
+  useEffect(() => {
+    window.addEventListener('scroll', updateScrollerShow);
+
+    return () => {
+      window.removeEventListener('scroll', updateScrollerShow);
+    };
+  }, []);
+
   useEffect(() => {
     collection.length > 12 &&
       window.scrollBy(0, document.documentElement.clientHeight - 140);
@@ -76,9 +97,13 @@ const App = () => {
       : setIsBtnVisible(false);
   }, [collection]); //eslint-disable-line
 
+  // Total Pictures Quantity Screen
+
   const screenMessage = totalPictures
     ? `${totalPictures} images in the album`
     : error;
+
+  // Modal Window Handler
 
   const clickOnImageHandler = url => setUrlForModal(url);
 
@@ -105,6 +130,8 @@ const App = () => {
       {isBtnVisible && (
         <Button btnText={'load more'} onClick={getNewPictures} />
       )}
+
+      {isScrollerShow && <Scroller />}
 
       {urlForModal && <Modal url={urlForModal} onClose={modalCloseHandler} />}
     </StyledDiv>

@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://ragimovalik.github.io/goit-react-hw-03-image-finder",
   "dependencies": {
+    "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -11,6 +12,7 @@
     "modern-normalize": "^1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
     "react-loader-spinner": "^4.0.0",
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.0",
