@@ -8,8 +8,6 @@ const StyledGallery = styled.ul`
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 16px;
   margin: 0 auto;
-  padding: 0;
-  list-style: none;
 `;
 
 const ImageGallery = ({ collection, onClick }) => {

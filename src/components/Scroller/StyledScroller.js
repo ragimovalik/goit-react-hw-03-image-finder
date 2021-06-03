@@ -33,41 +33,34 @@ const StyledScroller = styled.button`
   opacity: 0.5;
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-`;
 
-export default StyledScroller;
+  &:hover,
+  &:focus {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 
-/*
-.Scroller {
-}
-
-@media screen and (min-width: 1024px) {
-  .Scroller {
+  @media screen and (min-width: 1024px) {
     right: 6%;
 
     width: 60px;
     height: 60px;
   }
-}
 
-@media screen and (min-width: 576px) and (max-width: 1023px) {
-  .Scroller {
+  @media screen and (min-width: 576px) and (max-width: 1023px) {
     width: 50px;
     height: 50px;
   }
-}
 
-@media screen and (max-width: 575px) {
-  .Scroller {
+  @media screen and (max-width: 575px) {
     width: 46px;
     height: 46px;
   }
-}
+`;
 
-.Scroller:hover,
-.Scroller:focus {
-  opacity: 1;
-  transform: scale(1.05);
-}
+export default StyledScroller;
+
+/*
+
 
 */

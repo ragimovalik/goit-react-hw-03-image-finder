@@ -1,4 +1,4 @@
-import styles from './Scroller.module.css';
+import StyledScroller from './StyledScroller';
 import PublishIcon from '@material-ui/icons/Publish';
 
 const Scroller = () => {
@@ -7,9 +7,9 @@ const Scroller = () => {
   };
 
   return (
-    <button className={styles['Scroller']} onClick={scrollToTop}>
+    <StyledScroller onClick={scrollToTop}>
       <PublishIcon style={{ fontSize: 36 }} />
-    </button>
+    </StyledScroller>
   );
 };
 

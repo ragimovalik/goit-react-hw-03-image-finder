@@ -6,10 +6,6 @@ const StyledCloseBtn = styled.button`
   top: 2%;
   right: 2%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   width: 44px;
   height: 44px;
   padding: 0;
@@ -25,7 +21,7 @@ const StyledCloseBtn = styled.button`
   background-size: 60%;
   background-repeat: no-repeat;
 
-  opacity: 0.7;
+  opacity: 0.5;
   cursor: pointer;
   transition: opacity 250ms linear;
 

@@ -1,9 +1,5 @@
-html {
-  width: 100vw;
-  overflow-x: hidden;
-
-  scroll-behavior: smooth;
-}
+import { createGlobalStyle } from 'styled-components';
+export const GlobalStyle = createGlobalStyle`
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -12,6 +8,13 @@ body {
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  width: 100vw;
+  overflow-x: hidden;
+
+  scroll-behavior: smooth;
 }
 
 img {
@@ -41,3 +44,4 @@ li {
   padding: 0;
   list-style: none;
 }
+`;

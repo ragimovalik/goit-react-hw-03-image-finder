@@ -10,9 +10,7 @@ const StyledMessage = styled.p`
   color: #3f51b5;
 `;
 
-const TableScreen = ({ message }) => {
-  return <StyledMessage>{message}</StyledMessage>;
-};
+const TableScreen = ({ message }) => <StyledMessage>{message}</StyledMessage>;
 
 TableScreen.defaultProps = {
   message: ':)',

@@ -40,6 +40,7 @@ const App = () => {
 
   useEffect(() => {
     if (!query) return;
+
     galleryHandler();
   }, [query]); //eslint-disable-line
 
