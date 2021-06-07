@@ -1,4 +1,4 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import StyledCloseBtn from './StyledCloseBtn';
@@ -25,15 +25,15 @@ const StyledModal = styled.div`
 const Modal = ({ url, onClose }) => {
   const aaa = e => console.log(e.key);
 
-  // useEffect(() => {
-  //   window.addEventListener('keydown', onClose);
+  useEffect(() => {
+    window.addEventListener('keydown', onClose);
 
-  //   return () => window.removeEventListener('keydown', onClose);
-  // }, []); //eslint-disable-line
+    return () => window.removeEventListener('keydown', onClose);
+  }, []); //eslint-disable-line
 
   return (
-    <Overlay onClick={onClose} id="backdrop" onKeyDown={aaa}>
-      <StyledModal onKeyDown={aaa}>
+    <Overlay onClick={onClose} id="backdrop">
+      <StyledModal>
         <img src={url} alt=" " />
         <StyledCloseBtn onClick={onClose} type="button" />
       </StyledModal>
