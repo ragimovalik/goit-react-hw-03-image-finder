@@ -10,7 +10,6 @@ const StyledCloseBtn = styled.button`
   height: 44px;
   padding: 0;
   margin: 0;
-  /* border: 3px solid #3f51b5; */
   border: none;
   border-radius: 50%;
   outline: none;

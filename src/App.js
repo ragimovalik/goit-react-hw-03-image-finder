@@ -9,7 +9,7 @@ import TableScreen from './components/TableScreen';
 import Modal from './components/Modal';
 import Scroller from './components/Scroller';
 
-const StyledDiv = styled.div`
+const StyledAppWrap = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 16px;
@@ -21,11 +21,11 @@ const App = () => {
   const [query, setQuery] = useState('');
   let [pageNumber, setPageNumber] = useState(1);
   const [totalPictures, setTotalPictures] = useState();
+  const [urlForModal, setUrlForModal] = useState('');
   const [isBtnVisible, setIsBtnVisible] = useState(false);
   const [isSpinnerVisible, setIsSpinnerVisible] = useState(false);
-  const [urlForModal, setUrlForModal] = useState('');
-  const [error, setError] = useState('');
   const [isScrollerShow, setScrollerShow] = useState(false);
+  const [error, setError] = useState('');
 
   const inputSubmitHandler = inputedText => {
     setPageNumber(1);
@@ -37,7 +37,6 @@ const App = () => {
   };
 
   // Set Query Word
-
   useEffect(() => {
     if (!query) return;
 
@@ -45,7 +44,6 @@ const App = () => {
   }, [query]); //eslint-disable-line
 
   // Get Images by fetching and Render Gallery
-
   const galleryHandler = () => {
     fetchOn(query, pageNumber)
       .then(({ totalHits, hits }) => {
@@ -74,8 +72,7 @@ const App = () => {
     galleryHandler();
   };
 
-  // Scroller Handler (IsShow, Listener). Scroll to new page top
-
+  // Scroller Handler (IsShow, Listener).
   const updateScrollerShow = () =>
     document.documentElement.scrollTop <= 140
       ? setScrollerShow(false)
@@ -89,6 +86,7 @@ const App = () => {
     };
   }, []);
 
+  // Load More Button Handler (isVisible). Condition for scrolling to new page top.
   useEffect(() => {
     collection.length > 12 &&
       window.scrollBy(0, document.documentElement.clientHeight - 140);
@@ -99,13 +97,11 @@ const App = () => {
   }, [collection]); //eslint-disable-line
 
   // Total Pictures Quantity Screen
-
   const screenMessage = totalPictures
     ? `${totalPictures} images in the album`
     : error;
 
   // Modal Window Handler
-
   const clickOnImageHandler = url => setUrlForModal(url);
 
   const modalCloseHandler = ({ target, code }) => {
@@ -116,8 +112,10 @@ const App = () => {
     code === 'Escape' && setUrlForModal('');
   };
 
+  //============= RENDER =============
+
   return (
-    <StyledDiv>
+    <StyledAppWrap>
       <Searchbar onSubmit={inputSubmitHandler} />
 
       <TableScreen message={screenMessage} />
@@ -135,7 +133,7 @@ const App = () => {
       {isScrollerShow && <Scroller />}
 
       {urlForModal && <Modal url={urlForModal} onClose={modalCloseHandler} />}
-    </StyledDiv>
+    </StyledAppWrap>
   );
 };
 
