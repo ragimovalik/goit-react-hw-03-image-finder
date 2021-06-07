@@ -23,8 +23,6 @@ const StyledModal = styled.div`
 `;
 
 const Modal = ({ url, onClose }) => {
-  const aaa = e => console.log(e.key);
-
   useEffect(() => {
     window.addEventListener('keydown', onClose);
 
